@@ -1,9 +1,11 @@
 package net.hkpark.kakao.openbuilder.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -51,8 +53,9 @@ public class CommerceCardDto extends CardDto {
      * 제품에 대한 사진입니다.
      * 현재 1개만 가능
      */
+    @Builder.Default
     @JsonProperty("thumbnails")
-    private final List<ThumbnailDto> thumbnails;
+    private final List<ThumbnailDto> thumbnails = new ArrayList<>();
 
     /**
      * 제품을 판매하는 프로필 정보입니다.
@@ -64,6 +67,7 @@ public class CommerceCardDto extends CardDto {
      * 다양한 액션을 수행할 수 있는 버튼입니다.
      * 1개 이상, 3개 이하
      */
+    @Builder.Default
     @JsonProperty("buttons")
-    private final List<ButtonDto> buttons;
+    private final List<ButtonDto> buttons = new ArrayList<>();
 }

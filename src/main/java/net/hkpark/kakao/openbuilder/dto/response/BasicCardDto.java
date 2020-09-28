@@ -1,9 +1,12 @@
 package net.hkpark.kakao.openbuilder.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -26,7 +29,7 @@ public class BasicCardDto extends CardDto {
     /**
      * 카드의 상단 이미지입니다. (필수)
      */
-    @JsonProperty("thumbnail")
+    @JsonProperty("thumbnail") @NonNull
     private final ThumbnailDto thumbnail;
 
     /**
@@ -47,6 +50,7 @@ public class BasicCardDto extends CardDto {
      * 카드의 버튼들을 포함합니다.
      * 최대 3개
      */
+    @Builder.Default
     @JsonProperty("buttons")
-    private final List<ButtonDto> buttons;
+    private final List<ButtonDto> buttons = new ArrayList<>();
 }

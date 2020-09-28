@@ -1,6 +1,7 @@
 package net.hkpark.kakao.openbuilder.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -23,6 +24,7 @@ public class ThumbnailDto {
      * true: 이미지 영역을 1:1 비율로 두고 이미지의 원본 비율을 유지합니다. 이미지가 없는 영역은 흰색으로 노출합니다.
      * false: 이미지 영역을 2:1 비율로 두고 이미지의 가운데를 크롭하여 노출합니다.
      */
+    @Builder.Default
     @JsonProperty("fixedRatio")
     private final boolean fixedRatio = false;
 

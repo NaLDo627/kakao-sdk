@@ -6,6 +6,4 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @SuperBuilder
 public class CardDto {
-
-    private final SimpleTextDto simpleTextDto;
 }

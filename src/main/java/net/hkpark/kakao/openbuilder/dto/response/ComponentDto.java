@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * 아래 중 한 가지 데이터만 사용하여 응답
+ */
 @Getter
 @SuperBuilder
 public class ComponentDto {
@@ -36,4 +39,10 @@ public class ComponentDto {
      */
     @JsonProperty("listCard")
     private final ListCardDto listCard;
+
+    /**
+     * 커머스 카드
+     */
+    @JsonProperty("carousel")
+    private final CarouselDto carousel;
 }

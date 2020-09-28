@@ -1,9 +1,11 @@
 package net.hkpark.kakao.openbuilder.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -50,6 +52,7 @@ public class ButtonDto {
     /**
      * block이나 message action으로 블록 호출시, 스킬 서버에 추가적으로 제공하는 정보
      */
+    @Builder.Default
     @JsonProperty("extra")
-    private final Map<String, Object> extra;
+    private final Map<String, Object> extra = new HashMap<>();
 }

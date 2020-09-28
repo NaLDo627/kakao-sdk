@@ -1,9 +1,11 @@
 package net.hkpark.kakao.openbuilder.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +14,7 @@ import java.util.List;
 @Getter
 @SuperBuilder
 public class ContextControlDto {
+    @Builder.Default
     @JsonProperty("values")
-    private final List<ContextValueDto> values;
+    private final List<ContextValueDto> values = new ArrayList<>();
 }

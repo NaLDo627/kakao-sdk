@@ -1,9 +1,11 @@
 package net.hkpark.kakao.openbuilder.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -20,8 +22,9 @@ public class CarouselDto {
      * 케로셀 아이템입니다.
      * 최대 10개
      */
+    @Builder.Default
     @JsonProperty("items")
-    private final List<CardDto> items;
+    private final List<? extends CardDto> items = new ArrayList<>();
 
     /**
      * 케로셀의 커버를 제공합니다.
