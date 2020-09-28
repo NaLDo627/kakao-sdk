@@ -1,4 +1,4 @@
-package net.hkpark.kakao.openbuilder.dto;
+package net.hkpark.kakao.openbuilder.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

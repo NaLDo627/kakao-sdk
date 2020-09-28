@@ -1,4 +1,15 @@
-import org.gradle.api.tasks.compile.JavaCompile
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'            // ADD THIS LINE
+        classpath "com.gradle.publish:plugin-publish-plugin:0.9.1"
+//        classpath 'com.github.dcendents:android-maven-plugin:1.2'                 // AND THIS LINE
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
 
 plugins {
     id 'java'
@@ -6,8 +17,10 @@ plugins {
     id 'maven-publish'
 }
 
+Properties properties = new Properties()
+file("gradle.properties").withInputStream { properties.load(it) }
 group = 'net.hkpark'
-version = '0.0.1-SNAPSHOT'
+version = properties.getProperty("version")
 sourceCompatibility = '8'
 
 configurations {
@@ -22,6 +35,11 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
 
 repositories {
     mavenCentral()
@@ -42,13 +60,14 @@ test {
 
 publishing {
     publications {
-        // 해당 정보를 입력하여 타 프로젝트에서 해당 라이브러리를 참조한다.
         maven(MavenPublication) {
-            groupId = 'net.hkpark' as Publication // groupId 추가
-            artifactId = 'kakao-sdk' as Publication // artifactId 추가
-            version = '0.0.1-SNAPSHOT' as Publication // 버전 정보 추가
+            groupId 'net.hkpark'
+            artifactId 'kakao-sdk'
+            version properties.getProperty("version")
 
             from components.java
         }
     }
 }
+
+apply from: 'deploy.gradle'

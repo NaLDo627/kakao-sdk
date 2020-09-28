@@ -1,0 +1,153 @@
+apply plugin: 'com.jfrog.bintray'
+
+compileJava.options.encoding = 'UTF-8'
+Properties properties = new Properties()
+Properties gradleProperties = new Properties()
+file("gradle.properties").withInputStream { gradleProperties.load(it) }
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+//def artifact = new Properties()
+//artifact.load(new FileInputStream("deploy.settings"))
+
+version=gradleProperties.getProperty("version")
+group='net.hkpark'
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            packaging 'jar'
+            groupId 'net.hkpark'
+            artifactId 'kakao-sdk'
+            version gradleProperties.getProperty("version")
+            name 'kakao-sdk' // pom.project.name must be same as bintray.pkg.name
+            url 'https://github.com/NaLDo627/kakao-sdk'
+            inceptionYear '2020' // HARDCODED
+            licenses {
+                license { // HARDCODED
+                    name 'MIT'
+                    url 'https://opensource.org/licenses/MIT'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                connection 'https://github.com/NaLDo627/kakao-sdk.git'
+                developerConnection 'https://github.com/NaLDo627/kakao-sdk.git'
+                url 'https://github.com/NaLDo627/kakao-sdk'
+            }
+        }
+    }
+}
+
+
+File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
+properties.load(propFile.newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "kakao-sdk"
+        name = rootProject.name
+//        userOrg = 'NaLDo627'
+        websiteUrl = 'https://github.com/NaLDo627/kakao-sdk'
+        vcsUrl = 'https://github.com/NaLDo627/kakao-sdk.git'
+        licenses = ['MIT']
+        publish = true
+        version {
+            name = gradleProperties.getProperty("version")
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+javadoc {
+    options.encoding = "UTF-8"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+dependencies {
+//    compile fileTree(dir: 'libs', include: ['*.jar'])
+//    compile 'com.android.support:appcompat-v7:21.0.2'
+}
+
+/*
+
+plugins {
+    id 'java-library'
+    id 'org.kordamp.gradle.java-project' version '0.35.0'
+    id 'org.kordamp.gradle.bintray'      version '0.35.0'
+}
+
+if (!project.hasProperty('bintrayUsername'))  ext.bintrayUsername  = '**undefined**'
+if (!project.hasProperty('bintrayApiKey'))    ext.bintrayApiKey    = '**undefined**'
+if (!project.hasProperty('sonatypeUsername')) ext.sonatypeUsername = '**undefined**'
+if (!project.hasProperty('sonatypePassword')) ext.sonatypePassword = '**undefined**'
+
+config {
+    release = (rootProject.findProperty('release') ?: false).toBoolean()
+
+    info {
+        name          = 'kakao-sdk'
+        description   = 'My project providews awesome behavior'
+        vendor        = 'NaLDo627'
+        inceptionYear = '2020'
+        tags          = ['kakao']
+
+        links {
+            website      = 'https://github.com/NaLDo627/kakao-sdk'
+            issueTracker = 'https://github.com/NaLDo627/kakao-sdk/issues'
+            scm          = 'https://github.com/NaLDo627/kakao-sdk.git'
+        }
+
+        credentials {
+            sonatype {
+                username = project.sonatypeUsername
+                password = project.sonatypePassword
+            }
+        }
+
+        people {
+            person {
+                id    = 'NaLDo627'
+                name  = 'Hyunkook Park'
+                roles = ['developer']
+            }
+        }
+    }
+
+    licensing {
+        licenses {
+            license {
+                id = 'MIT'
+            }
+        }
+    }
+
+    bintray {
+        userOrg      = 'NaLDo627'
+        name         = rootProject.name
+        publish      = config.release
+        credentials {
+            username = project.bintrayUsername
+            password = project.bintrayApiKey
+        }
+    }
+}*/
