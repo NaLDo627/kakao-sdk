@@ -1,5 +1,6 @@
 package net.hkpark.kakao.openbuilder.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,12 +35,14 @@ public class SkillResponseDto {
     /**
      * 블록의 context 설정을 제어할 수 있습니다.
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("context")
     private final ContextControlDto context;
 
     /**
      * 필요에 따라 커스텀한 데이터를 넣을 수 있는 항목입니다.
      */
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Builder.Default
     @JsonProperty("data")
     private final Map<String, Object> data = new HashMap<>();

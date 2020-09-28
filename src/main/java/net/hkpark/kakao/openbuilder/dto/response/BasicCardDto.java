@@ -1,5 +1,6 @@
 package net.hkpark.kakao.openbuilder.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class BasicCardDto extends CardDto {
      * 카드의 프로필 정보입니다.
      * 현재 미 지원
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("profile")
     private final ProfileDto profile;
 
@@ -43,6 +45,7 @@ public class BasicCardDto extends CardDto {
      * 카드의 소셜 정보입니다.
      * 현재 미 지원
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("social")
     private final SocialDto social;
 
@@ -51,6 +54,7 @@ public class BasicCardDto extends CardDto {
      * 최대 3개
      */
     @Builder.Default
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("buttons")
     private final List<ButtonDto> buttons = new ArrayList<>();
 }
