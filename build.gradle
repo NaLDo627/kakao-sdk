@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'            // ADD THIS LINE
+
         classpath "com.gradle.publish:plugin-publish-plugin:0.9.1"
 //        classpath 'com.github.dcendents:android-maven-plugin:1.2'                 // AND THIS LINE
         // NOTE: Do not place your application dependencies here; they belong

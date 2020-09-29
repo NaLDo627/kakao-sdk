@@ -47,8 +47,9 @@ public class ComponentDto {
     private final ListCardDto listCard;
 
     /**
-     * 커머스 카드
+     * 커루셀 사용
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("carousel")
     private final CarouselDto carousel;
 }
