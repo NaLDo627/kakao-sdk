@@ -1,5 +1,6 @@
 package net.hkpark.kakao.openbuilder.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class ButtonDto {
      * 웹 브라우저를 열고 webLinkUrl 의 주소로 이동합니다
      */
     @JsonProperty("webLinkUrl")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String webLinkUrl;
 
     /**
@@ -35,18 +37,21 @@ public class ButtonDto {
      * block: 블록 연결시 사용자의 발화로 노출됩니다.
      */
     @JsonProperty("messageText")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String messageText;
 
     /**
      * phoneNumber에 있는 번호로 전화를 겁니다.
      */
     @JsonProperty("phoneNumber")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String phoneNumber;
 
     /**
      * blockId를 갖는 블록을 호출합니다. (바로가기 응답의 블록 연결 기능과 동일)
      */
     @JsonProperty("blockId")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private final String blockId;
 
     /**
@@ -54,5 +59,6 @@ public class ButtonDto {
      */
     @Builder.Default
     @JsonProperty("extra")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private final Map<String, Object> extra = new HashMap<>();
 }
