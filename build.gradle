@@ -18,10 +18,12 @@ plugins {
     id 'maven-publish'
 }
 
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
+ext.libVersion = (! profile.equals("prod")) ? "snapshot" : "release";
 Properties properties = new Properties()
 file("gradle.properties").withInputStream { properties.load(it) }
 group = 'net.hkpark'
-version = properties.getProperty("version")
+version = properties.getProperty("${libVersion}-version")
 sourceCompatibility = '8'
 
 configurations {

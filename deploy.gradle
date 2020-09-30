@@ -10,7 +10,9 @@ tasks.withType(JavaCompile) {
 }
 
 
-version=gradleProperties.getProperty("version")
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
+ext.libVersion = (! profile.equals("prod")) ? "snapshot" : "release";
+version=gradleProperties.getProperty("${libVersion}-version")
 group='net.hkpark.kakao'
 archivesBaseName='kakao-sdk'
 
