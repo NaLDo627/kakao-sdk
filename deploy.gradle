@@ -13,7 +13,7 @@ tasks.withType(JavaCompile) {
 ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
 ext.libVersion = (! profile.equals("prod")) ? "snapshot" : "release";
 version=gradleProperties.getProperty("${libVersion}-version")
-group='net.hkpark.kakao'
+group='net.hkpark'
 archivesBaseName='kakao-sdk'
 
 install {
