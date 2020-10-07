@@ -15,6 +15,9 @@ public class ValidationRequestDto {
     @JsonProperty("bot")
     private BotDto bot;
 
+    /**
+     * current request's utterance
+     */
     @JsonProperty("utterance")
     private String utterance;
 

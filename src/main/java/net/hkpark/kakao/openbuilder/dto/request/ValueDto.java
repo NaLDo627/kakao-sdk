@@ -12,9 +12,15 @@ import java.util.Map;
 @NoArgsConstructor
 @ToString
 public class ValueDto {
+    /**
+     * original value
+     */
     @JsonProperty("origin")
     private String origin;
 
+    /**
+     * resolved value(by AIU or etc.)
+     */
     @JsonProperty("resolved")
     private String resolved;
 }
