@@ -30,7 +30,7 @@ public class BasicCardDto extends CardDto {
     /**
      * 카드의 상단 이미지입니다. (필수)
      */
-    @JsonProperty("thumbnail") @NonNull
+    @JsonProperty("thumbnail")
     private final ThumbnailDto thumbnail;
 
     /**
