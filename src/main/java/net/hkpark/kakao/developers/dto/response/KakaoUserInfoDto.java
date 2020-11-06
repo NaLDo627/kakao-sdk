@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Getter
 @SuperBuilder
-public class UserInfoDto {
+public class KakaoUserInfoDto {
     /**
      * 회원번호
      */
