@@ -2,26 +2,27 @@ package net.hkpark.kakao.developers.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Getter
-@SuperBuilder
+@NoArgsConstructor
 public class Oauth2TokenDto {
     @JsonProperty("token_type")
-    private final String tokenType;
+    private String tokenType;
 
     @JsonProperty("access_token")
-    private final String accessToken;
+    private String accessToken;
 
     @JsonProperty("expires_in")
-    private final Integer expiresIn;
+    private Integer expiresIn;
 
     @JsonProperty("refresh_token")
-    private final String refreshToken;
+    private String refreshToken;
 
     @JsonProperty("refresh_token_expires_in")
-    private final Integer refreshTokenExpiresIn;
+    private Integer refreshTokenExpiresIn;
 
     @JsonProperty("scope")
-    private final String scope;
+    private String scope;
 }
