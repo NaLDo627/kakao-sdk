@@ -38,5 +38,5 @@ public class KakaoUserInfoDto {
      * 추가 정보
      */
     @JsonProperty("properties")
-    private Map<String, Object> refreshTokenExpiresIn;
+    private Map<String, Object> properties;
 }
